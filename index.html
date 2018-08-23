@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Esencja programowania funkcyjnego</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .remark-slide-content { font-size: 40px; padding: 1em 2em; }
+      .remark-code { font-size: 40px; }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; margin-top: 0.5em; margin-bottom: 0.5em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .remark-slide-content img { display: block; margin-left: auto; margin-right: auto; height: 400px; }
+
+      .check { color: green; font-size: 1.5em; line-height: 47px; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+## Esencja programowania funkcyjnego
+
+---
+
+class: center, middle
+
+## Esencja programowania funkcyjnego
+
+Michał Kwiatkowski
+
+michal@trivas.pl
+
+---
+
+## Ścieżka programisty FP
+
+1. jakie to dziwne
+
+---
+
+## Ścieżka programisty FP
+
+1. jakie to dziwne
+2. jakie to fajne
+
+---
+
+## Ścieżka programisty FP
+
+1. jakie to dziwne
+2. jakie to fajne
+3. dlaczego nikt tego nie używa?
+
+---
+
+## Ścieżka programisty FP
+
+1. jakie to dziwne
+2. jakie to fajne
+3. dlaczego nikt tego nie używa?
+4. ...?
+5. profit
+
+---
+
+## Tematy
+
+- [dlaczego OOP dominuje](#8)
+- ["less is more"](#15)
+- ["moda" na FP](#24)
+- [podstawieniowy model obliczeń](#34)
+- [TDD](#53)
+
+[>>=](#61)
+
+---
+
+## dlaczego OOP dominuje
+
+---
+
+## OOP
+
+- stan jest ukryty w obiektach
+- łatwe "sklejanie" aplikacji z komponentów
+
+---
+
+## Ruby on Rails
+
+["How to build a blog in 15 minutes with Rails"](https://www.youtube.com/watch?v=Gzj723LkRJY)
+
+---
+
+## tymczasem w FP
+
+- stan nie jest ukryty i jego obsługa spada na autora aplikacji
+- trudniejsze "sklejanie" stanu
+
+---
+
+## OOP optymalizuje pisanie
+
+## FP optymalizuje czytanie
+
+---
+
+## z drugiej strony...
+
+Świat nie jest złożony z obiektów!
+
+- web: bezstanowy HTTP
+- bazy danych: tabele danych lub kolekcje rekordów
+
+---
+
+[<- Powrót](#7)
+
+---
+
+## "less is more"
+
+---
+
+## Przykład #1: `private`
+
+Ograniczenie: nie można z zewnątrz wołać wszystkich metod danej klasy.
+
+---
+
+## Przykład #1: `private`
+
+
+Zysk: `private` oddziela interface obiektu od implementacji, co pozwala swobodnie zmieniać implementację bez potrzeby zmian w kodzie reszty systemu.
+
+---
+
+## Przykład #2: statyczny system typów
+
+Ograniczenie: funkcje przyjmują tylko parametry określonych typów.
+
+---
+
+## Przykład #2: statyczny system typów
+
+Zysk:
+- ograniczenie błędów w runtime
+- dokumentacja (zawsze up-to-date)
+
+---
+
+## Przykład #3: niemutowalne typy danych
+
+Ograniczenie: wartości nie można zmieniać *in-place*.
+
+---
+
+## Przykład #3: niemutowalne typy danych
+
+Zysk:
+- łatwiejszy debugging
+- współdzielenie strukturalne
+- programowanie współbieżne bez locków
+
+---
+
+## FP = mniej rzeczy może pójść źle
+
+- wartości są stałe bo brak mutacji
+- nie ma efektów ubocznych
+- funkcje korzystają jedynie ze swoich bezpośrednich argumentów
+- zależności są wyraźnie widoczne: funkcje wołają funkcje
+
+---
+
+[<- Powrót](#7)
+
+---
+
+## "moda" na FP
+
+---
+
+## .NET
+
+- 2005: F#
+- 2007: lambda expressions w C# 3
+- 2012: ReactiveX
+
+---
+
+## Java
+
+- 2004: Scala
+- 2007: Clojure
+- 2011: Kotlin
+- 2012: ReactiveX
+- 2014: lambda expressions w Java 8
+
+---
+
+## JavaScript
+
+- 2009: underscore.js
+- 2014: immutable.js
+- 2015: RxJS
+
+---
+
+## z drugiej strony...
+
+- 1958: Lisp
+- 1973: ML
+- 1985: Miranda
+- 1990: Haskell
+
+---
+
+## z drugiej strony...
+
+- 2007: Go
+- 2015: klasy w ECMAScript 6
+- 2018: wciąż brak języka FP w Top20 [TIOBE index](https://www.tiobe.com/tiobe-index/)
+
+---
+
+## Rok dominacji FP to jak
+
+## "rok Linuksa na desktopach"
+
+---
+
+## FP w językach imperatywnych: pod górkę
+
+[Moja wersja dotenv](https://github.com/mkwiatkowski/dotenv)
+
+---
+
+## FP w językach imperatywnych: pod górkę
+
+[Regexp::last_match](https://ruby-doc.org/core-2.5.1/Regexp.html#method-c-last_match) (`$~`)
+
+> Note that the ::last_match is local to the thread and method scope of the method that did the pattern match.
+
+---
+
+[<- Powrót](#7)
+
+---
+
+## <center>podstawieniowy model obliczeń</center>
+
+---
+
+## <center>SICP / Wizard Book</center>
+
+![](sicp.jpg)
+
+---
+
+## Przykład #1
+
+---
+
+```elixir
+defmodule M do
+  def add(x) do
+    x + 1
+  end
+end
+```
+
+---
+
+```elixir
+M.add(5)
+```
+
+```elixir
+x + 1 # x = 5
+```
+
+```elixir
+5 + 1
+```
+
+```elixir
+6
+```
+
+---
+
+```elixir
+M.add(5) + M.add(7)
+```
+
+```elixir
+(5 + 1) + (7 + 1)
+```
+
+```elixir
+6 + 8
+```
+
+```elixir
+14
+```
+
+---
+
+```elixir
+M.add(3) === M.add(3)
+# zawsze true
+```
+
+---
+
+## ale co jeżeli...
+
+```elixir
+  def add(x) do
+    r = receive do
+      v -> v
+    after
+      0 -> x
+    end
+    send self(), r + 1
+    r
+  end
+```
+
+---
+
+```elixir
+M.add(5) # => 5
+M.add(5) # => 6
+M.add(5) # => 7
+```
+
+```elixir
+M.add(3) === M.add(3)
+false
+```
+
+---
+
+## Przykład #2
+
+---
+
+```elixir
+defmodule M do
+  def wat() do
+    if hmm() || true do
+      "wat"
+    else
+      "no"
+    end
+  end
+end
+```
+
+```elixir
+M.wat() # => "wat"
+```
+
+---
+
+```elixir
+defmodule M do
+  # refactoring...
+  def wat() do
+    "wat"
+  end
+end
+```
+
+---
+
+## ale co jeżeli...
+
+```elixir
+def hmm() do
+  IO.puts "oops"
+  true
+end
+```
+
+```elixir
+IO.puts M.wat()
+# przed refactoringiem: oops wat
+# po refactoringu: wat
+```
+
+---
+
+## Przykład #3
+
+---
+
+```javascript
+var z = 42;
+
+function addz(x) {
+  return z + x;
+}
+```
+
+```javascript
+addz(1); // => 43
+```
+
+---
+
+## ale co jeżeli...
+
+```javascript
+function addz(x) {
+  z += 1;
+  return z + x;
+}
+```
+
+```javascript
+addz(1); // => 44
+addz(1); // => 45
+addz(1); // => 46
+```
+
+---
+
+> Referential transparency is violated when we include `set!` in our computer language. This makes it tricky to determine when we can simplify expressions by substituting equivalent expressions. Consequently, **reasoning about programs that use assignment becomes drastically more difficult**. -- [SICP](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-20.html#%_sec_3.1.3)
+
+---
+
+*Pure functions*
+
+*Referential transparency*
+
+*Equational reasoning*
+
+---
+
+[<- Powrót](#7)
+
+---
+
+## <center>Test Driven Development</center>
+
+---
+
+![](tdd.jpg)
+
+---
+
+## Wymówki
+
+- bo trzeba uruchomić przeglądarkę
+- bo trzeba wypełnić bazę
+- bo kod wypisuje wynik na ekran
+- bo strona wymaga zalogowania
+- bo kod zależy od kilku innych komponentów o określonym stanie
+
+---
+
+## Wymówki
+
+Albo w skrócie: bo kod nie jest czysto funkcyjny.
+
+---
+
+## <center>xUnit Test Patterns</center>
+
+![](xunit.jpg)
+
+---
+
+## QuickCheck
+
+```haskell
+prop_RevRev xs =
+  reverse (reverse xs) == xs
+    where types = xs::[Int]
+```
+
+---
+
+## [excheck](https://github.com/parroty/excheck)
+
+```elixir
+for_all {xs, ys} in
+    {list(int()), list(int())} do
+  Enum.count(Sample.concat(xs, ys))
+    == Enum.count(xs) +
+       Enum.count(ys)
+end
+```
+
+---
+
+[<- Powrót](#7)
+
+---
+
+## Jak uczyć się FP?
+
+---
+
+Języki funkcyjne:
+
+- Elixir
+- Clojure
+- Elm
+- PureScript
+- Haskell
+
+---
+
+Języki mainstreamowe:
+
+- brak immutable data structures w core języka
+- brak wsparcia dla tail-recursion
+- zbyt łatwo wrócić do starych nawyków
+- zyski są wątpliwe
+- cały ekosystem jest przeciwko nam
+
+---
+
+class: center, middle
+
+## Esencja programowania funkcyjnego
+
+Michał Kwiatkowski
+
+michal@trivas.pl
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
